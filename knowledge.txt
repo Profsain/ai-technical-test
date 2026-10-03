@@ -1,0 +1,10 @@
+The AI Development Bootcamp lasts 6 months.
+Students study 10 hours per week.
+The bootcamp teaches HTML, CSS, JavaScript and GitHub.
+Python and FastAPI are used for backend development.
+RAG means Retrieval-Augmented Generation.
+RAG retrieves relevant information before asking an LLM to answer.
+Embeddings convert text into numerical vectors.
+FAISS is used to store and search vectors.
+Ollama allows language models to run locally.
+Students learn Docker and deployment basics.

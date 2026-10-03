@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Bootcamp Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="container">
+    <section class="card">
+        <p class="label">AI Development Bootcamp</p>
+
+        <h1>RAG Assistant</h1>
+
+        <p class="subtitle">
+            Ask a question about the bootcamp knowledge base.
+        </p>
+
+        <div class="input-group">
+            <input
+                id="question"
+                type="text"
+                placeholder="Example: What is RAG?"
+            >
+            <button id="askButton">Ask</button>
+        </div>
+
+        <div class="examples">
+            <button class="example" data-question="What is RAG?">
+                What is RAG?
+            </button>
+
+            <button class="example" data-question="How long does the bootcamp last?">
+                Duration
+            </button>
+
+            <button class="example" data-question="What is FAISS used for?">
+                FAISS
+            </button>
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <div class="answer-section">
+            <h2>Answer</h2>
+            <div id="answer" class="answer">
+                Your answer will appear here.
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

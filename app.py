@@ -79,19 +79,8 @@ class QuestionRequest(BaseModel):
 # ---------------------------------------------------------
 
 def create_retriever():
-
-    # TODO 1:
-    # Create Ollama embeddings using:
-    # model="nomic-embed-text"
-
-    embeddings = ollama.embeddings(model='nomic-embed-text', prompt=documents)
-
-
-    # TODO 2:
-    # Create a FAISS vector store
-
-    vector_store = FAISS.from_embeddings(embedding=embeddings)
-
+    embeddings = OllamaEmbeddings(model="nomic-embed-text")
+    vector_store = FAISS.from_documents(documents, embeddings)
 
     if vector_store is None:
         return None
@@ -129,18 +118,11 @@ def ask_question(data: QuestionRequest):
         )
 
 
-    # TODO 3:
-    # 1. Retrieve relevant documents for data.question
-    # 2. Combine their page_content into "context"
-    # 3. Format the prompt
-    # 4. Send it to the LLM
-    # 5. Store the final text in "answer"
-
-    context = FAISS.load_local(
-
-    )
-    answer = "TODO"
-
+    relevant_docs = retriever.invoke(data.question)
+    context = "\n".join(doc.page_content for doc in relevant_docs)
+    prompt_text = prompt.format(context=context, question=data.question)
+    response = llm.invoke(prompt_text)
+    answer = response.content.strip()
 
     return {
         "question": data.question,

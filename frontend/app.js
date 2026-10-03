@@ -19,25 +19,21 @@ async function askQuestion() {
     statusBox.classList.remove("error");
 
     try {
+        const response = await fetch("/api/ask", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ question })
+        });
 
-        // TODO 4:
-        // Send a POST request to /api/ask
-        // with JSON:
-        //
-        // {
-        //     "question": question
-        // }
+        if (!response.ok) {
+            throw new Error("Request failed");
+        }
 
-        const response = null;
-
-
-        // TODO 5:
-        // Convert the response to JSON
-        // and display data.answer in answerBox.
-
-        const data = null;
-
-        answerBox.textContent = "TODO: display the answer";
+        const data = await response.json();
+        answerBox.textContent = data.answer;
+        statusBox.textContent = "Answer ready.";
 
     } catch (error) {
 
